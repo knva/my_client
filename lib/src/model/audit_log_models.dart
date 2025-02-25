@@ -8,6 +8,7 @@ import 'id/entity_id.dart';
 import 'base_data.dart';
 import 'id/tenant_id.dart';
 import 'id/user_id.dart';
+import 'package:intl/intl.dart';
 
 enum ActionType {
   ADDED,
@@ -61,7 +62,12 @@ ActionStatus actionStatusFromString(String value) {
 
 extension ActionStatusToString on ActionStatus {
   String toShortString() {
-    return toString().split('.').last;
+    switch (this) {
+      case ActionStatus.SUCCESS:
+        return Intl.message('成功', name: 'success');
+      case ActionStatus.FAILURE:
+        return Intl.message('失败', name: 'failure');
+    }
   }
 }
 

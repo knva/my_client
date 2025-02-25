@@ -170,6 +170,29 @@ class ThingsboardClient {
     }
   }
 
+  int? getTokenExpiration(String? token) {
+    if (token != null) {
+      try {
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+        if (decodedToken.containsKey('exp')) {
+          return decodedToken['exp'] * 1000;
+        }
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Map<String, dynamic> getTokensData() {
+    return {
+      'jwt_token': _token,
+      'refresh_token': _refreshToken,
+      'jwt_token_expiration': getTokenExpiration(_token),
+      'refresh_token_expiration': getTokenExpiration(_refreshToken)
+    };
+  }
+
   Future<void> _userLoaded() async {
     if (_telemetryWebsocketService != null) {
       _telemetryWebsocketService!.reset(true);
