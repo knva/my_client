@@ -19,6 +19,7 @@ import 'device_id.dart';
 import 'tenant_id.dart';
 import 'rpc_id.dart';
 import 'queue_id.dart';
+import 'topo_id.dart';
 
 import '../entity_type_models.dart';
 import './has_uuid.dart';
@@ -82,6 +83,8 @@ abstract class EntityId extends HasUuid {
         return RpcId(uuid);
       case EntityType.QUEUE:
         return QueueId(uuid);
+      case EntityType.TOPO:
+        return TopoId(uuid);
     }
   }
 

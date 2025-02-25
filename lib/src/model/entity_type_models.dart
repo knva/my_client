@@ -21,7 +21,8 @@ enum EntityType {
   TB_RESOURCE,
   OTA_PACKAGE,
   RPC,
-  QUEUE
+  QUEUE,
+  TOPO
 }
 
 EntityType entityTypeFromString(String value) {
